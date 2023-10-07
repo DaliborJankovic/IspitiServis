@@ -1,10 +1,10 @@
-package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.dao;
+package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service;
 
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet.Subject;
 
 import java.util.List;
 
-public interface SubjectDAO {
+public interface SubjectService {
 
     void save(Subject theSubject);
 

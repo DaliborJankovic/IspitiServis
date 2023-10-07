@@ -1,10 +1,10 @@
-package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.dao;
+package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service;
 
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet.Professor;
 
 import java.util.List;
 
-public interface ProfessorDAO {
+public interface ProfessorService {
 
     void save(Professor theProfessor);
 

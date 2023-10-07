@@ -20,7 +20,6 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     }
 
     @Override
-    @Transactional
     public void save(Professor theProfessor) {
         entityManager.persist(theProfessor);
     }
@@ -31,14 +30,13 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     }
 
     @Override
-    public List<Professor> findByAll() {
+    public List<Professor> findAll() {
 
         TypedQuery theQuery = entityManager.createQuery("FROM Professor", Professor.class);
         return theQuery.getResultList();
     }
 
     @Override
-    @Transactional
     public void update(Professor theProfessor) {
         entityManager.merge(theProfessor);
     }

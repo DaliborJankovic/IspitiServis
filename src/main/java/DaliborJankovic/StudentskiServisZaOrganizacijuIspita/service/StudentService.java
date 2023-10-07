@@ -1,18 +1,16 @@
-package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.dao;
+package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service;
 
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet.Student;
 
 import java.util.List;
 
-public interface StudentDAO {
+public interface StudentService {
 
-    void save (Student theStudent);
+    void save(Student theStudent);
 
     Student findById (Integer id);
 
     List<Student> findAll();
-
-    void update(Student theStudent);
 
     void delete(Integer id);
 

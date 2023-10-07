@@ -5,7 +5,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class SubjectDAOImpl implements SubjectDAO{
     }
 
     @Override
-    @Transactional
     public void save(Subject theSubject) {
         entityManager.persist(theSubject);
     }
@@ -31,7 +29,7 @@ public class SubjectDAOImpl implements SubjectDAO{
     }
 
     @Override
-    public List<Subject> findByAll() {
+    public List<Subject> findAll() {
 
         TypedQuery theQuery = entityManager.createQuery("FROM Subject", Subject.class);
 
@@ -39,13 +37,11 @@ public class SubjectDAOImpl implements SubjectDAO{
     }
 
     @Override
-    @Transactional
     public void update(Subject theSubject) {
         entityManager.merge(theSubject);
     }
 
     @Override
-    @Transactional
     public void delete(Integer id) {
         entityManager.remove(entityManager.find(Subject.class, id));
     }

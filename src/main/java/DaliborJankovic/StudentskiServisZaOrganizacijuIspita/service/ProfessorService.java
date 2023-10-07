@@ -12,8 +12,6 @@ public interface ProfessorService {
 
     List<Professor> findAll();
 
-    void update(Professor theProfessor);
-
-    void delete(Integer id);
+    void deleteById(Integer id);
 
 }

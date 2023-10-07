@@ -2,7 +2,9 @@ package DaliborJankovic.StudentskiServisZaOrganizacijuIspita;
 
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.dao.StudentRepository;
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet.Student;
+import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service.ProfessorService;
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service.StudentService;
+import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service.SubjectService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,19 +18,21 @@ public class StudentskiServisZaOrganizacijuIspitaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(StudentService studentService){
+	public CommandLineRunner commandLineRunner(StudentService studentService,
+											   ProfessorService professorService,
+											   SubjectService subjectService){
 
 		return runner -> {
 
 			//createStudent (studentService);
-			deleteStudent (studentService);
+			//deleteStudent (studentService);
 
 		};
 	}
 
 	private void deleteStudent(StudentService studentService) {
 
-		studentService.delete(1);
+		studentService.deleteById(1);
 
 	}
 

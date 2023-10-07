@@ -12,12 +12,6 @@ import java.util.Optional;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-//    private StudentDAO studentDAO;
-//
-//    public StudentServiceImpl(StudentDAO studentDAO) {
-//        this.studentDAO = studentDAO;
-//    }
-
     private StudentRepository studentRepository;
 
     @Autowired
@@ -34,16 +28,15 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findById(Integer id) {
         Optional<Student> result = studentRepository.findById(id);
-        Student theStudent = null;
+        Student tempStudent = null;
 
         if (result.isPresent()) {
-            theStudent = result.get();
-        }
-        else {
+            tempStudent = result.get();
+        } else {
             throw new RuntimeException("There is no student with id - " + id);
         }
 
-        return theStudent;
+        return tempStudent;
     }
 
     @Override
@@ -51,8 +44,9 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
-
     @Override
     @Transactional
-    public void delete(Integer id) { studentRepository.deleteById(id); }
+    public void deleteById(Integer id) {
+        studentRepository.deleteById(id);
+    }
 }

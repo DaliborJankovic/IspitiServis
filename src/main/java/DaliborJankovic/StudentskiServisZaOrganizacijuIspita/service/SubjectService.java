@@ -12,8 +12,6 @@ public interface SubjectService {
 
     List<Subject> findAll();
 
-    void update(Subject theSubject);
-
-    void delete(Integer id);
+    void deleteById(Integer id);
 
 }

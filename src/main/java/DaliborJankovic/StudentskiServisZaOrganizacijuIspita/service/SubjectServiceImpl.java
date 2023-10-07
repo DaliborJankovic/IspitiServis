@@ -1,46 +1,53 @@
 package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.service;
 
-import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.dao.SubjectDAO;
+import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.dao.SubjectRepository;
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubjectServiceImpl implements SubjectService{
 
-    private SubjectDAO subjectDAO;
+    private SubjectRepository subjectRepository;
 
-    public SubjectServiceImpl(SubjectDAO subjectDAO) {
-        this.subjectDAO = subjectDAO;
+    @Autowired
+    public SubjectServiceImpl(SubjectRepository subjectRepository) {
+        this.subjectRepository = subjectRepository;
     }
 
     @Override
     @Transactional
     public void save(Subject theSubject) {
-        subjectDAO.save(theSubject);
+        subjectRepository.save(theSubject);
     }
 
     @Override
     public Subject findById(Integer id) {
-        return subjectDAO.findById(id);
+        Optional<Subject> result = subjectRepository.findById(id);
+        Subject tempSubject = null;
+
+        if (result.isPresent()) {
+            tempSubject = result.get();
+        }
+        else {
+            throw new RuntimeException("There is no subject with id - " + id);
+        }
+
+        return tempSubject;
     }
 
     @Override
     public List<Subject> findAll() {
-        return subjectDAO.findAll();
+        return subjectRepository.findAll();
     }
 
     @Override
     @Transactional
-    public void update(Subject theSubject) {
-        subjectDAO.update(theSubject);
-    }
-
-    @Override
-    @Transactional
-    public void delete(Integer id) {
-        subjectDAO.delete(id);
+    public void deleteById(Integer id) {
+        subjectRepository.deleteById(id);
     }
 }

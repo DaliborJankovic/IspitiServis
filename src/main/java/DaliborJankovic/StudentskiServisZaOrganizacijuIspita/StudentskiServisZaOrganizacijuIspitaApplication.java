@@ -24,7 +24,7 @@ public class StudentskiServisZaOrganizacijuIspitaApplication {
 
 		return runner -> {
 
-			//createStudent (studentService);
+			createStudent (studentService);
 			//deleteStudent (studentService);
 
 		};
@@ -40,7 +40,7 @@ public class StudentskiServisZaOrganizacijuIspitaApplication {
 
 		Student newStudent = new Student();
 
-		newStudent.setIndexNumber("100/06");
+		newStudent.setIndexNumber("1001");
 		newStudent.setIndexYear(2006);
 		newStudent.setFirstName("Dalibor");
 		newStudent.setLastName("Jankovic");

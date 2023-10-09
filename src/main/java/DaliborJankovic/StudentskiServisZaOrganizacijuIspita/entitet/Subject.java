@@ -3,6 +3,7 @@ package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet;
 
 import DaliborJankovic.StudentskiServisZaOrganizacijuIspita.enums.Semester;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -16,6 +17,7 @@ public class Subject {
     private int subId;
 
     @Column(name = "name")
+    @Size(min = 3, message = ("This field must have minimum 3 characters"))
     private String name;
 
     @Column(name = "description")

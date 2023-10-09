@@ -1,6 +1,7 @@
 package DaliborJankovic.StudentskiServisZaOrganizacijuIspita.entitet;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +15,7 @@ public class Professor extends PersonalData{
 
 
     @Column(name = "phone_number")
+    @Size(min = 9, message = ("This field must have minimum 9 characters"))
     private String phoneNumber;
 
     @Column(name = "reelection_date")

@@ -5,6 +5,8 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "student")
@@ -23,6 +25,17 @@ public class Student extends PersonalData{
 
     @Column(name = "current_year_of_study")
     private int currentYearOfStudy;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+                    CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name = "student_subject",
+            joinColumns = @JoinColumn (name = "student_id"),
+            inverseJoinColumns = @JoinColumn (name = "sub_id")
+    )
+    private List<Subject> subjects;
 
 }
 

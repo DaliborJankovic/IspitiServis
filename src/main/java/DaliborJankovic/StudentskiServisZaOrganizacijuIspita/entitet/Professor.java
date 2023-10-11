@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -24,6 +25,16 @@ public class Professor extends PersonalData{
     @ManyToOne
     @JoinColumn(name = "title")
     private Title title;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+                cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+                           CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name = "professor_subject",
+            joinColumns = @JoinColumn (name = "professor_id"),
+            inverseJoinColumns = @JoinColumn (name = "subject_id")
+    )
+    private List<Subject> subjects;
 
 
 }

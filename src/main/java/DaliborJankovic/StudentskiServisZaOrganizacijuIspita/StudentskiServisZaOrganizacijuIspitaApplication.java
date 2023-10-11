@@ -24,7 +24,7 @@ public class StudentskiServisZaOrganizacijuIspitaApplication {
 
 		return runner -> {
 
-			createStudent (studentService);
+			//createStudent (studentService);
 			//deleteStudent (studentService);
 
 		};
@@ -41,12 +41,12 @@ public class StudentskiServisZaOrganizacijuIspitaApplication {
 		Student newStudent = new Student();
 
 		newStudent.setIndexNumber("1001");
-		newStudent.setIndexYear(2006);
+		newStudent.setIndexYear(2023);
 		newStudent.setFirstName("Dalibor");
 		newStudent.setLastName("Jankovic");
 		newStudent.setEMail("dalibor@gmail.com");
 		newStudent.setAddress("Sv. Cirila i Metodija 42");
-		newStudent.setCurrentYearOfStudy(4);
+		newStudent.setCurrentYearOfStudy(1);
 
 		studentService.save(newStudent);
 

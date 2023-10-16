@@ -1,13 +1,11 @@
 package DaliborJankovic.StudentskiServis.entity.users;
 
-import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -32,24 +30,6 @@ public class Student extends PersonalData {
     @Min(value = 1)
     @Max(value = 5)
     private int currentYearOfStudy;
-
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "student_subject",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private List<Subject> subjects;
-
-    //    metoda za dodavanje predmeta
-    public void addSubject(Subject subject) {
-
-        if (subjects == null) {
-            subjects = new ArrayList<>();
-        }
-
-        subjects.add(subject);
-    }
 
 }
 

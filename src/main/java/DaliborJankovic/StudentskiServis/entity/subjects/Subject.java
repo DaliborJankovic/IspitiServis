@@ -2,11 +2,9 @@ package DaliborJankovic.StudentskiServis.entity.subjects;
 
 
 import DaliborJankovic.StudentskiServis.entity.users.Professor;
-import DaliborJankovic.StudentskiServis.entity.users.Student;
 import DaliborJankovic.StudentskiServis.enums.Semester;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -51,15 +49,6 @@ public class Subject implements DaliborJankovic.StudentskiServis.entity.Entity {
             inverseJoinColumns = @JoinColumn(name = "professor_id"))
     private List<Professor> professors;
 
-
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "student_subject",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private List<Student> students;
-
 //        metoda za dodavanje Profesora
     public void addProfessor(Professor professor) {
 
@@ -69,16 +58,5 @@ public class Subject implements DaliborJankovic.StudentskiServis.entity.Entity {
 
         professors.add(professor);
     }
-
-//        metoda za dodavanje studenata
-    public void addStudent(Student student) {
-
-        if (students == null) {
-            students = new ArrayList<>();
-        }
-
-        students.add(student);
-    }
-
 
 }

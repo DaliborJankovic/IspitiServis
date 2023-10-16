@@ -1,13 +1,10 @@
 package DaliborJankovic.StudentskiServis.entity.exams;
 
-import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
 import DaliborJankovic.StudentskiServis.enums.ExamPeriodStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "exam_period")
@@ -19,31 +16,17 @@ public class ExamPeriod implements DaliborJankovic.StudentskiServis.entity.Entit
     @Column(name = "id")
     private int id;
 
-    @Column(name = "exam_period_name")
+    @Column(nullable = false, length = 30, name = "exam_period_name")
     private String examPeriodName;
 
-    @Column(name = "start_date")
-    private Date startDate;
+    @Column(nullable = false, name = "start_date")
+    private LocalDate startDate;
 
-    @Column(name = "end_date")
-    private Date endDate;
+    @Column(nullable = false, name = "end_date")
+    private LocalDate endDate;
 
-    @Column(name = "status")
+    @Column(nullable = false, name = "status")
     @Enumerated(EnumType.STRING)
     private ExamPeriodStatus status;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "exam_period_id")
-    List<Subject> subjectList;
-
-    //    metoda za dodavanje ispita u ispitni rok
-    public void addSubject(Subject subject) {
-
-        if (subjectList == null) {
-            subjectList = new ArrayList<>();
-        }
-
-        subjectList.add(subject);
-    }
 
 }

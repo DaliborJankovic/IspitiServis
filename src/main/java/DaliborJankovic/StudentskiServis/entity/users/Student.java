@@ -9,28 +9,40 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "student")
+@Table
 @Data
-public class Student extends PersonalData {
+public class Student extends User {
 
-    @Column(length = 4, nullable = false, unique = true, name = "index_number")
+    @Column(length = 4, nullable = false, unique = true)
     @NotEmpty
     @Size(min = 4, max = 4, message = ("Index Number must have 4 characters"))
     @Pattern(regexp = "^[0-9]+$", message = "Value must be an integer")
     private String indexNumber;
 
-    @Column(nullable = false, name = "index_year")
-//    @NotNull(message = "Field cannot be null")
+    @Column(nullable = false)
     @Min(value = 2000, message = ("Index year must be greater than or equal to 2000"))
     @Max(value = 2100, message = ("Index year must be less than or equal to 2100"))
     private int indexYear;
 
-    @Column(nullable = false, name = "current_year_of_study")
-//    @NotNull(message = "Field cannot be null")
+    @Column(nullable = false)
     @Min(value = 1)
     @Max(value = 5)
     private int currentYearOfStudy;
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+////        if (!(o instanceof Student student)) return false;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        if (!super.equals(o)) return false;
+//        Student student = (Student) o;
+//        return indexYear == student.indexYear && currentYearOfStudy == student.currentYearOfStudy && Objects.equals(indexNumber, student.indexNumber);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(super.hashCode(), indexNumber, indexYear, currentYearOfStudy);
+//    }
 }
 
 

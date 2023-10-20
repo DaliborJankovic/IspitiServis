@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Studentska organizacija</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Studentska organizacija</h3>
+    <hr>
+
+    <a th:href="@{/students/addStudents}"
+       class="btn btn-primary btn-sm mb-3">
+        Dodaj Studenta
+    </a>
+    <!--------------------------------------------------->
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Index number</th>
+            <th>Index year</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Postal Code</th>
+            <th>Current year of study</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempStudent : ${studentsList}">
+
+            <td th:text="${tempStudent.indexNumber}"/>
+            <td th:text="${tempStudent.indexYear}"/>
+            <td th:text="${tempStudent.firstName}"/>
+            <td th:text="${tempStudent.lastName}"/>
+            <td th:text="${tempStudent.EMail}"/>
+            <td th:text="${tempStudent.address}"/>
+            <td th:text="${tempStudent.postalCode}"/>
+            <td th:text="${tempStudent.currentYearOfStudy}"/>
+            <!-- Add buttons -->
+            <td>
+                <!-- Add update button Link -->
+                <a th:href="@{/students/updateStudent(studentId=${tempStudent.username})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+                <!-- Add "delete" button/link -->
+                <a th:href="@{/students/deleteStudent(studentId=${tempStudent.username})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are u sure you want to delete this student?'))) return false">
+                    Delete
+                </a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <!--        ------------------------------------------------------->
+
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3">Go Back</a>
+
+</div>
+
+</body>
+</html>

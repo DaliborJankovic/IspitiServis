@@ -3,7 +3,6 @@ package DaliborJankovic.StudentskiServis.entity.users;
 import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
 import DaliborJankovic.StudentskiServis.entity.users.details.Title;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,22 +13,20 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "professor")
+@Table
 @Data
-public class Professor extends PersonalData {
+public class Professor extends User {
 
 
-    @Column(length = 15, name = "phone_number")
+    @Column(length = 15)
     @Size(min = 9, message = ("This field must have minimum 9 characters"))
     private String phoneNumber;
 
-    @Column(nullable = false, name = "reelection_date")
-//    @NotNull(message = "Field cannot be null")
+    @Column(nullable = false)
     private LocalDate reelectionDate;
 
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn( nullable = false, name = "title")
-//    @NotNull(message = "Field cannot be null")
+    @JoinColumn( nullable = false, name = "titleid")
     private Title title;
 
     @ManyToMany(fetch = FetchType.LAZY,

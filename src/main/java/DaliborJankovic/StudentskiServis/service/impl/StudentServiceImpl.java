@@ -27,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student findById(Integer id) {
+    public Student findById(String id) {
         Optional<Student> result = studentRepository.findById(id);
         Student tempStudent = null;
 
@@ -46,8 +46,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
-    public void deleteById(Integer id) {
+    public void deleteById(String id) {
         studentRepository.deleteById(id);
     }
 }

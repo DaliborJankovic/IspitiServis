@@ -27,7 +27,7 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public Professor findById(Integer id) {
+    public Professor findById(String id) {
         Optional<Professor> result = professorRepository.findById(id);
         Professor tempProfessor = null;
 
@@ -47,6 +47,5 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    @Transactional
-    public void deleteById(Integer id) { professorRepository.deleteById(id); }
+    public void deleteById(String id) { professorRepository.deleteById(id); }
 }

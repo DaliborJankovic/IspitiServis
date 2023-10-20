@@ -8,10 +8,10 @@ public interface ProfessorService {
 
     void save(Professor theProfessor);
 
-    Professor findById (Integer id);
+    Professor findById (String id);
 
     List<Professor> findAll();
 
-    void deleteById(Integer id);
+    void deleteById(String id);
 
 }

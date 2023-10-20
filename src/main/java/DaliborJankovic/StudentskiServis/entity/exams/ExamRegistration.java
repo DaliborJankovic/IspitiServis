@@ -2,22 +2,30 @@ package DaliborJankovic.StudentskiServis.entity.exams;
 
 import DaliborJankovic.StudentskiServis.entity.users.Student;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class ExamRegistration implements DaliborJankovic.StudentskiServis.entity.Entity{
+@Table
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ExamRegistration implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "username")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "exam_id")
+    @JoinColumn(name = "examid")
     private Exam exam;
 
-    @Column(nullable = false, name = "grade")
+    @Column(nullable = true)
     private int grade;
 
 }

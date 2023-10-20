@@ -2,30 +2,33 @@ package DaliborJankovic.StudentskiServis.entity.exams;
 
 import DaliborJankovic.StudentskiServis.enums.ExamPeriodStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "exam_period")
+@Table
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExamPeriod implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int examPeriodId;
 
-    @Column(nullable = false, length = 30, name = "exam_period_name")
-    private String examPeriodName;
+    @Column(nullable = false, length = 30)
+    private String name;
 
-    @Column(nullable = false, name = "start_date")
+    @Column(nullable = false)
     private LocalDate startDate;
 
-    @Column(nullable = false, name = "end_date")
+    @Column(nullable = false)
     private LocalDate endDate;
 
-    @Column(nullable = false, name = "status")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ExamPeriodStatus status;
 

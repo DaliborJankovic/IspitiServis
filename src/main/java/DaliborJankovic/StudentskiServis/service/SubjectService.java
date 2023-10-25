@@ -8,10 +8,10 @@ public interface SubjectService {
 
     void save(Subject theSubject);
 
-    Subject findById (Integer id);
+    Subject findById (Long id);
 
     List<Subject> findAll();
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 
 }

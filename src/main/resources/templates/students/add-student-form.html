@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+    <h3>Students</h3>
+    <hr>
+    <p class="h4 mb-4">Add student</p>
+    <form action="#"
+          th:action="@{/students/save}"
+          th:object="${student}" method="post">
+
+        <label class="l-txt">Username:</label>
+        <input type="text" required
+               th:field="*{username}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Password:</label>
+        <input type="text" required
+               th:field="*{password}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Index number:</label>
+        <input type="text" required
+               th:field="*{indexNumber}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Index year:</label>
+        <input type="text" required
+               th:field="*{indexYear}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">First name:</label>
+        <input type="text" required
+               th:field="*{firstName}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Last name:</label>
+        <input type="text" required
+               th:field="*{lastName}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Email:</label>
+        <input type="text"
+               th:field="*{EMail}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Address:</label>
+        <input type="text"
+               th:field="*{address}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt" for="postalCode">Postal Code:</label>
+        <a th:href="@{/cities/add}" class="add-city-button">Dodaj Grad</a>
+        <select id="postalCode"
+                th:field="*{postalCode}"
+                class="form-control mb-4 w-25">
+            <option th:each="postalCode : ${cityList}"
+                    th:value="${postalCode}"
+                    th:text="${postalCode.getCityName()}"></option>
+        </select>
+        <label class="l-txt">Current year of study:</label>
+        <input type="text" required
+               th:field="*{currentYearOfStudy}"
+               class="form-control mb-4 w-25">
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+</div>
+</body>
+</html>

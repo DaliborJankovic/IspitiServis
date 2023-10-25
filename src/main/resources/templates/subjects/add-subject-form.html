@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+    <h3>Subjects</h3>
+    <hr>
+    <p class="h4 mb-4">Add subject</p>
+    <form action="#"
+          th:action="@{/subjects/save}"
+          th:object="${subject}" method="post">
+        <input type="hidden"
+               th:field="*{subId}">
+        <label class="l-txt">Name:</label>
+        <input type="text"
+               th:field="*{name}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">No of ESP:</label>
+        <input type="text"
+               th:field="*{numberOfESP}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Year of study:</label>
+        <input type="text"
+               th:field="*{yearOfStudy}"
+               class="form-control mb-4 w-25">
+        <div class="form-group">
+            <label class="l-txt" for="semester">Select Semester:</label>
+            <select th:field="*{semester}" id="semester" class="form-control mb-4 w-25">
+                <option th:each="sem : ${T(DaliborJankovic.StudentskiServis.enums.Semester).values()}"
+                        th:value="${sem}"
+                        th:text="${#strings.capitalize(sem.toString())}">Spring
+                </option>
+            </select>
+        </div>
+        <label class="l-txt">Description:</label>
+        <textarea
+                th:field="*{description}"
+                class="form-control mb-4 w-25"
+                style="height: 150px; white-space: pre-wrap;"></textarea>
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
+</div>
+</body>
+</html>

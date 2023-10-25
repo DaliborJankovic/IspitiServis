@@ -27,7 +27,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject findById(Integer id) {
+    public Subject findById(Long id) {
         Optional<Subject> result = subjectRepository.findById(id);
         Subject tempSubject = null;
 
@@ -48,7 +48,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     @Transactional
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         subjectRepository.deleteById(id);
     }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+    <h3>Professors</h3>
+    <hr>
+    <a th:href="@{/professors/add}"
+       class="btn btn-primary btn-sm mb-3 update-button">
+        New Professor
+    </a>
+    <table class="table table-bordered table-striped w-75">
+        <thead class="table-dark">
+        <tr>
+            <th>Professor</th>
+            <th>Title</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempProfessor : ${professorList}">
+            <td>
+                <!--                <a th:href="@{'/students/' + ${student.username}}">-->
+                <a th:href="@{/professors/details(professorId=${tempProfessor.username})}">
+                    <span th:text="${tempProfessor.firstName + ' ' + tempProfessor.lastName}"/>
+                </a>
+            </td>
+            <td th:text="${tempProfessor.title}"/>
+            <td>
+                <a th:href="@{/professors/delete(professorId=${tempProfessor.username})}"
+                   class="btn btn-danger btn-sm delete-button"
+                   onclick="if (!(confirm('Are u sure you want to delete this professor?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

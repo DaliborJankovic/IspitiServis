@@ -2,7 +2,6 @@ package DaliborJankovic.StudentskiServis.entity.users.details;
 
 import DaliborJankovic.StudentskiServis.enums.TeacherTitle;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -15,9 +14,12 @@ public class Title {
     @Column(name = "title_id")
     private Long titleId;
 
-    @Column(nullable = false, name = "teacher_title")
-//    @NotNull(message = "Field cannot be null")
+    @Column(name = "teacher_title")
     @Enumerated(EnumType.STRING)
     private TeacherTitle teacherTitle;
 
+    @Override
+    public String toString() {
+        return teacherTitle + "";
+    }
 }

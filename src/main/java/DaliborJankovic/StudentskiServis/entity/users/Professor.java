@@ -25,8 +25,8 @@ public class Professor extends User {
     @Column(nullable = false)
     private LocalDate reelectionDate;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn( nullable = false, name = "titleid")
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "titleid")
     private Title title;
 
     @ManyToMany(fetch = FetchType.LAZY,

@@ -24,4 +24,8 @@ public class City {
     @NotEmpty
     private String cityName;
 
+    @Override
+    public String toString() {
+        return postCode + "";
+    }
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+    <h3>Professors</h3>
+    <hr>
+    <p class="h4 mb-4">Add professor</p>
+    <form action="#" th:action="@{/professors/save}"
+          th:object="${professor}" method="post">
+        <label class="l-txt">Username:</label>
+        <input type="text" required
+               th:field="*{username}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Password:</label>
+        <input type="text" required
+               th:field="*{password}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">First name:</label>
+        <input type="text" required
+               th:field="*{firstName}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Last name:</label>
+        <input type="text" required
+               th:field="*{lastName}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Email:</label>
+        <input type="text"
+               th:field="*{EMail}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Address:</label>
+        <input type="text"
+               th:field="*{address}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt" for="thePostalCode">Postal Code:</label>
+        <a th:href="@{/cities/add}" class="add-city-button">Dodaj Grad</a>
+        <select id="thePostalCode"
+                th:field="*{postalCode}"
+                class="form-control mb-4 w-25">
+            <option th:each="postalCode : ${cityList}"
+                    th:value="${postalCode}"
+                    th:text="${postalCode.getCityName()}"></option>
+        </select>
+        <label class="l-txt">Phone number:</label>
+        <input type="text"
+               th:field="*{phoneNumber}"
+               class="form-control mb-4 w-25">
+        <div th:if="${#fields.hasErrors('phoneNumber')}" class="text-danger">
+            <p th:errors="*{phoneNumber}"></p>
+        </div>
+        <label class="l-txt" for="reelectionDate">Reelection date:</label>
+        <input type="date"  required
+               id="reelectionDate" name="reelectionDate"
+               th:field="*{reelectionDate}"
+               class="form-control mb-4 w-25"
+               th:value="${'selectedDate'}">
+        <div id="selectedDate"></div>
+        <label class="l-txt" for="theTitle">Title:</label>
+        <select id="theTitle" required
+                th:field="*{title}"
+                class="form-control mb-4 w-25">
+            <option th:each="title : ${titlesList}"
+                    th:value="${title.getTitleId()}"
+                    th:text="${title.getTeacherTitle()}"></option>
+        </select>
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
+</div>
+</body>
+</html>
+
+<!--JavaScript-->
+<script>
+    document.getElementById("reelectionDate").addEventListener("change", function () {
+        var datePicker = this;
+        var selectedDate = datePicker.value;
+        document.getElementById("selectedDate").textContent = "Selected Date: " + selectedDate;
+    });
+</script>

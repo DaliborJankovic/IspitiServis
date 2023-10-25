@@ -2,12 +2,10 @@ package DaliborJankovic.StudentskiServis;
 
 import DaliborJankovic.StudentskiServis.entity.users.Professor;
 import DaliborJankovic.StudentskiServis.entity.users.Student;
+import DaliborJankovic.StudentskiServis.entity.users.details.City;
 import DaliborJankovic.StudentskiServis.entity.users.details.Title;
 import DaliborJankovic.StudentskiServis.enums.TeacherTitle;
-import DaliborJankovic.StudentskiServis.service.ProfessorService;
-import DaliborJankovic.StudentskiServis.service.StudentService;
-import DaliborJankovic.StudentskiServis.service.SubjectService;
-import DaliborJankovic.StudentskiServis.service.UserService;
+import DaliborJankovic.StudentskiServis.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,7 +26,8 @@ public class StudentskiServisApplication {
 	public CommandLineRunner commandLineRunner(StudentService studentService,
 											   ProfessorService professorService,
 											   SubjectService subjectService,
-											   UserService userService){
+											   UserService userService,
+											   CityService cityService){
 
 		return runner -> {
 
@@ -87,14 +86,18 @@ public class StudentskiServisApplication {
 
 		Student tempStudent = new Student();
 
-		tempStudent.setUsername("Dali_j");
-		tempStudent.setPassword("123456");
-		tempStudent.setIndexNumber("1001");
+		tempStudent.setUsername("Nikooo");
+		tempStudent.setPassword("456");
+		tempStudent.setIndexNumber("1003");
 		tempStudent.setIndexYear(2023);
-		tempStudent.setFirstName("Dalibor");
-		tempStudent.setLastName("Jankovic");
-		tempStudent.setEMail("dalibor@gmail.com");
-		tempStudent.setAddress("Sv. Cirila i Metodija 42");
+		tempStudent.setFirstName("Nikola");
+		tempStudent.setLastName("Nikolic");
+		tempStudent.setEMail("niko@gmail.com");
+		tempStudent.setAddress("Lepenicka 66");
+		City tempCity = new City();
+		tempCity.setCityName("Kragujevac");
+		tempCity.setPostCode(34000);
+		tempStudent.setPostalCode(tempCity);
 		tempStudent.setCurrentYearOfStudy(1);
 
 		studentService.save(tempStudent);

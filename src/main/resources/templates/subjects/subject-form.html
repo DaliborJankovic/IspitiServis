@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+    <h3>Subjects</h3>
+    <hr>
+    <a th:href="@{/subjects/add}"
+       class="btn btn-primary btn-sm mb-3 update-button">
+        New Subject
+    </a>
+    <table class="table table-bordered table-striped custom-table">
+        <thead class="table-dark">
+        <tr>
+            <th>Subject Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempSubject : ${subjectList}">
+            <td th:text="${tempSubject.name}"/>
+            <td>
+                <a th:href="@{/subjects/update(subjectId=${tempSubject.subId})}"
+                   class="btn btn-info btn-sm update-button">
+                    Update
+                </a>
+                <a th:href="@{/subjects/delete(subjectId=${tempSubject.subId})}"
+                   class="btn btn-danger btn-sm delete-button"
+                   onclick="if (!(confirm('Are u sure you want to delete this subject?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
+</div>
+</body>
+</html>

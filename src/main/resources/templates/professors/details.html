@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container">
+    <h3 th:object="${professor}" style="text-align: center; margin-top: 20px;">
+        <span th:text="${professor.firstName + ' ' + professor.lastName}"/></h3>
+    <hr>
+    <table class="table custom-table" style="margin: 0 auto">
+        <tr>
+            <th>Title:</th>
+            <td th:text="${professor.title}"></td>
+        </tr>
+        <tr>
+            <th>Reelection date:</th>
+            <td th:text="${professor.reelectionDate}"></td>
+        </tr>
+        <tr>
+            <th>Phone number:</th>
+            <td th:text="${professor.phoneNumber}"></td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td th:text="${professor.EMail}"></td>
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td th:text="${professor.address + ' ' + professor.postalCode.cityName}"></td>
+        </tr>
+        <tr>
+            <th>Postal Code:</th>
+            <td th:text="${professor.postalCode}"></td>
+        </tr>
+    </table>
+    <div style="margin: 0 auto; width: 30%;">
+        <div style="text-align: right; margin-top: 20px;">
+            <a th:href="@{/professors/update(professorId=${professor.username})}"
+               class="btn btn-info btn-sm update-button">
+                Update
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

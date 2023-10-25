@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+    <h3>Cities</h3>
+    <hr>
+    <p class="h4 mb-4">Add city</p>
+    <form action="#"
+          th:action="@{/cities/save}"
+          th:object="${city}"
+          method="post">
+        <label class="l-txt">City name:</label>
+        <input type="text"
+               th:field="*{cityName}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt">Post Code:</label>
+        <input type="text"
+               th:field="*{postCode}"
+               class="form-control mb-4 w-25">
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
+</div>
+</body>
+</html>

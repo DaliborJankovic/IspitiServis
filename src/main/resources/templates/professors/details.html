@@ -32,10 +32,19 @@
             <th>Postal Code:</th>
             <td th:text="${professor.postalCode}"></td>
         </tr>
+        <tr>
+            <th>Teaching Subjects:</th>
+            <td>
+                <ul>
+                    <li th:each="subject : ${professor.subjects}"
+                        th:text="${subject.name}"></li>
+                </ul>
+            </td>
+        </tr>
     </table>
     <div style="margin: 0 auto; width: 30%;">
         <div style="text-align: right; margin-top: 20px;">
-            <a th:href="@{/professors/update(professorId=${professor.username})}"
+            <a th:href="@{/professors/update/{professorId}(professorId=${professor.username})}"
                class="btn btn-info btn-sm update-button">
                 Update
             </a>

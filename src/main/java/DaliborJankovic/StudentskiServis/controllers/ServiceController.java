@@ -1,4 +1,4 @@
-package DaliborJankovic.StudentskiServis.rest;
+package DaliborJankovic.StudentskiServis.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

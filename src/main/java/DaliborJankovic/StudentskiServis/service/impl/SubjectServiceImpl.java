@@ -33,8 +33,7 @@ public class SubjectServiceImpl implements SubjectService {
 
         if (result.isPresent()) {
             tempSubject = result.get();
-        }
-        else {
+        } else {
             throw new RuntimeException("There is no subject with id - " + id);
         }
 
@@ -51,4 +50,17 @@ public class SubjectServiceImpl implements SubjectService {
     public void deleteById(Long id) {
         subjectRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public void addProfessorToSubject(String professorId, Long subjectId) {
+        subjectRepository.addProfessorToSubject(professorId, subjectId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteProfessorFromSubject(String professorId, Long subjectId) {
+        subjectRepository.deleteProfessorFromSubject(professorId, subjectId);
+    }
+
 }

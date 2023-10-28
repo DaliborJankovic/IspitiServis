@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:insert="~{base-templates/base-head.html}"></head>
 <body>
-<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
 <div class="container">
     <h3>Subjects</h3>
     <hr>
@@ -33,6 +33,16 @@
                 </option>
             </select>
         </div>
+        <!----------------------------------------------------------------------->
+<!--        <label class="l-txt" for="AssignedProfessors">Assign Professors:</label>-->
+<!--        <select id="AssignedProfessors"-->
+<!--                th:field="*{professors}"-->
+<!--                class="form-control mb-4 w-25">-->
+<!--            <option th:each="tempProfessor : ${professorsList}"-->
+<!--                    th:value="${tempProfessor}"-->
+<!--                    th:text="${tempProfessor.firstName + ' ' + tempProfessor.lastName + ' / ' + tempProfessor.title.teacherTitle}"></option>-->
+<!--        </select>-->
+        <!----------------------------------------------------------------------->
         <label class="l-txt">Description:</label>
         <textarea
                 th:field="*{description}"
@@ -41,7 +51,6 @@
         <button type="submit" class="btn btn-info col-2 update-button">Save</button>
     </form>
     <hr>
-    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
 </div>
 </body>
 </html>

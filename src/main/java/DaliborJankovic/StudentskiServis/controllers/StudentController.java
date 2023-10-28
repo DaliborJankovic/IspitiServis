@@ -1,4 +1,4 @@
-package DaliborJankovic.StudentskiServis.rest;
+package DaliborJankovic.StudentskiServis.controllers;
 
 import DaliborJankovic.StudentskiServis.entity.users.Student;
 import DaliborJankovic.StudentskiServis.entity.users.details.City;
@@ -31,32 +31,28 @@ public class StudentController {
         return "/students/student-form";
     }
 
-    @GetMapping("/details")
-    public String info(@RequestParam("studentId") String id, Model theModel){
-        Student theStudent = studentService.findById(id);
+    @GetMapping("{studentId}")
+    public String viewStudent(@PathVariable String studentId, Model theModel) {
+        Student theStudent = studentService.findById(studentId);
         theModel.addAttribute("student", theStudent);
         return "students/details";
     }
 
-//    @GetMapping("/students/{id}")
-//    public String viewStudent(@PathVariable String id, Model theModel) {
-//        Student theStudent = studentService.findById(id);
-//        theModel.addAttribute("student", theStudent);
-//        return "students/details";
-//    }
     @GetMapping("/add")
     public String addStudents(Model theModel) {
         Student theStudent = new Student();
         List<City> cities = cityService.findAll();
+        theModel.addAttribute("title", "Add student");
         theModel.addAttribute("student", theStudent);
         theModel.addAttribute("cityList", cities);
         return "students/add-student-form";
     }
 
-    @GetMapping("/update")
-    public String updateStudent(@RequestParam("studentId") String id, Model theModel) {
-        Student theStudent = studentService.findById(id);
+    @GetMapping("/update/{studentId}")
+    public String updateStudent(@PathVariable String studentId, Model theModel) {
+        Student theStudent = studentService.findById(studentId);
         List<City> cities = cityService.findAll();
+        theModel.addAttribute("title", "Update student");
         theModel.addAttribute("student", theStudent);
         theModel.addAttribute("cityList", cities);
         return "students/add-student-form"; // ne moze redirect: --->> gubi se findById...

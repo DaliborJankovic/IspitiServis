@@ -11,6 +11,8 @@
           th:action="@{/cities/save}"
           th:object="${city}"
           method="post">
+        <input type="hidden" name="redirect" th:value="${returnTo}">
+        <input type="hidden" name="id" th:value="${userId}">
         <label class="l-txt">City name:</label>
         <input type="text"
                th:field="*{cityName}"
@@ -22,7 +24,6 @@
         <button type="submit" class="btn btn-info col-2 update-button">Save</button>
     </form>
     <hr>
-    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
 </div>
 </body>
 </html>

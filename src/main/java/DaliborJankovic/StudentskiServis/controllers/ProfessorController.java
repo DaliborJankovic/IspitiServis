@@ -1,4 +1,4 @@
-package DaliborJankovic.StudentskiServis.rest;
+package DaliborJankovic.StudentskiServis.controllers;
 
 import DaliborJankovic.StudentskiServis.entity.users.Professor;
 import DaliborJankovic.StudentskiServis.entity.users.details.City;
@@ -35,9 +35,9 @@ public class ProfessorController {
         return "/professors/professor-form";
     }
 
-    @GetMapping("/details")
-    public String info(@RequestParam("professorId") String id, Model theModel){
-        Professor theProfessor = professorService.findById(id);
+    @GetMapping("{professorId}")
+    public String viewProfessor(@PathVariable String professorId, Model theModel) {
+        Professor theProfessor = professorService.findById(professorId);
         theModel.addAttribute("professor", theProfessor);
         return "professors/details";
     }
@@ -53,9 +53,9 @@ public class ProfessorController {
         return "professors/add-professor-form";
     }
 
-    @GetMapping("/update")
-    public String updateProfessor(@RequestParam("professorId") String id, Model theModel) {
-        Professor theProfessor = professorService.findById(id);
+    @GetMapping("/update/{professorId}")
+    public String updateProfessor(@PathVariable String professorId, Model theModel) {
+        Professor theProfessor = professorService.findById(professorId);
         List<City> cities = cityService.findAll();
         List<Title> titles = titleService.findAll();
         theModel.addAttribute("professor", theProfessor);

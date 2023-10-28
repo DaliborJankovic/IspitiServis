@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ExamRegistration implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

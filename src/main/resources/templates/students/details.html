@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:insert="~{base-templates/base-head.html}"></head>
 <body>
-<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
 <div class="container">
     <h3 th:object="${student}" style="text-align: center; margin-top: 20px;">
         <span th:text="${student.firstName + ' ' + student.lastName}"/></h3>
@@ -34,12 +34,12 @@
         </tr>
     </table>
     <div style="margin: 0 auto; width: 30%;">
-    <div style="text-align: right; margin-top: 20px;">
-        <a th:href="@{/students/update(studentId=${student.username})}"
-           class="btn btn-info btn-sm update-button">
-            Update
-        </a>
-    </div>
+        <div style="text-align: right; margin-top: 20px;">
+            <a th:href="@{/students/update/{studentId}(studentId=${student.username})}"
+               class="btn btn-info btn-sm update-button">
+                Update
+            </a>
+        </div>
     </div>
 </div>
 </body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container">
+    <h3 th:object="${subject}" style="text-align: center; margin-top: 20px;">
+        <span th:text="${subject.name}"/></h3>
+    <hr>
+    <table class="table custom-table" style="margin: 0 auto">
+        <tr>
+            <th>Description:</th>
+            <td th:text="${subject.description}"></td>
+        </tr>
+        <tr>
+            <th>No of ESP:</th>
+            <td th:text="${subject.numberOfESP}"></td>
+        </tr>
+        <tr>
+            <th>Year of study:</th>
+            <td th:text="${subject.yearOfStudy}"></td>
+        </tr>
+        <tr>
+            <th>Semester:</th>
+            <td th:text="${subject.semester}"></td>
+        </tr>
+        <tr>
+            <th>Associate professors:</th>
+            <td>
+                <ul>
+                    <li th:each="professor : ${subject.professors}">
+                        <span th:text="${professor.firstName + ' ' + professor.lastName}"></span>
+                        <form th:action="@{/subjects/{subjectId}/removeProfessor/{professorId}(subjectId=${subject.subId}, professorId=${professor.username})}"
+                              method="post">
+                            <button type="submit" class="btn btn-sm delete-button"
+                                    onclick="return confirm('Are you sure you want to remove this professor form subject?')">
+                                Remove
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div style="margin: 0 auto; width: 30%;">
+        <div style="text-align: right; margin-top: 20px;">
+            <a th:href="@{/subjects/assign_professors(subjectId=${subject.subId})}"
+               class="btn btn-info btn-sm update-button">
+                Assign professor
+            </a>
+        </div>
+    </div>
+    <div style="margin: 0 auto; width: 30%;">
+        <div style="text-align: right; margin-top: 20px;">
+            <a th:href="@{/subjects/update/{subjectId}(subjectId=${subject.subId})}"
+               class="btn btn-info btn-sm update-button">
+                Update
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

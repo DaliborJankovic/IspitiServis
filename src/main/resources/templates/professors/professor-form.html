@@ -22,8 +22,7 @@
         <tbody>
         <tr th:each="tempProfessor : ${professorList}">
             <td>
-                <!--                <a th:href="@{'/students/' + ${student.username}}">-->
-                <a th:href="@{/professors/details(professorId=${tempProfessor.username})}">
+                <a th:href="@{/professors/{professorId}(professorId=${tempProfessor.username})}">
                     <span th:text="${tempProfessor.firstName + ' ' + tempProfessor.lastName}"/>
                 </a>
             </td>

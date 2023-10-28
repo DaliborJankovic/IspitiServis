@@ -47,4 +47,12 @@ public class Professor extends User {
         subjects.add(subject);
     }
 
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                ", reelectionDate=" + reelectionDate +
+                ", title=" + title +
+                '}';
+    }
 }

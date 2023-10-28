@@ -20,7 +20,7 @@ import java.util.List;
 public class Subject implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long subId;
 
     @Column(length = 30, nullable = false)

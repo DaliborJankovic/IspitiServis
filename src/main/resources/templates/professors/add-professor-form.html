@@ -34,7 +34,7 @@
                th:field="*{address}"
                class="form-control mb-4 w-25">
         <label class="l-txt" for="thePostalCode">Postal Code:</label>
-        <a th:href="@{/cities/add}" class="add-city-button">Dodaj Grad</a>
+        <a th:href="@{/cities/add_from_professor(ProfessorId=${professor.username})}" class="add-city-button">Dodaj Grad</a>
         <select id="thePostalCode"
                 th:field="*{postalCode}"
                 class="form-control mb-4 w-25">
@@ -67,7 +67,6 @@
         <button type="submit" class="btn btn-info col-2 update-button">Save</button>
     </form>
     <hr>
-    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-3 back-button">Go Back</a>
 </div>
 </body>
 </html>

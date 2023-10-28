@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class ExamPeriod implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int examPeriodId;
 
     @Column(nullable = false, length = 30)

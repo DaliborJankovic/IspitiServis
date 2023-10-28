@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container" style="text-align: left; margin-top: 20px;">
+    <h3 th:object="${subject}" style="text-align: center; margin-top: 20px;">
+        <span th:text="'Assign to professors ' + ${subject.name}"/></h3>
+    <hr>
+    <table class="table custom-table" style="margin: 0 auto">
+        <tbody>
+        <tr th:each="tempProfessor : ${professorList}">
+            <td>
+                <a >
+                    <span th:text="${tempProfessor.firstName + ' ' + tempProfessor.lastName + ' / ' + tempProfessor.title.teacherTitle}"/>
+                </a>
+            </td>
+            <td>
+                <form th:action="@{/subjects/{subjectId}/addProfessor/{professorId}(subjectId=${subject.subId}, professorId=${tempProfessor.username})}"
+                      method="post">
+                    <button type="submit" class="btn btn-sm update-button"
+                            onclick="return confirm('Are you sure you want to assign this professor?')">Assign</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

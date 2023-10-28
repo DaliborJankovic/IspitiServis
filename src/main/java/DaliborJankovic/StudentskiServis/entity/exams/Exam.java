@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Exam  implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long examId;
 
     @ManyToOne

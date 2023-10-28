@@ -6,7 +6,7 @@
 <div class="container">
     <h3>Students</h3>
     <hr>
-    <p class="h4 mb-4">Add student</p>
+    <p th:object="${title}" class="h4 mb-4" th:text="${title}"></p>
     <form action="#"
           th:action="@{/students/save}"
           th:object="${student}" method="post">
@@ -44,7 +44,7 @@
                th:field="*{address}"
                class="form-control mb-4 w-25">
         <label class="l-txt" for="postalCode">Postal Code:</label>
-        <a th:href="@{/cities/add}" class="add-city-button">Dodaj Grad</a>
+        <a th:href="@{/cities/add_from_student(StudentId=${student.username})}" class="add-city-button">Dodaj Grad</a>
         <select id="postalCode"
                 th:field="*{postalCode}"
                 class="form-control mb-4 w-25">

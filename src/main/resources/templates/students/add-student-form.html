@@ -48,9 +48,10 @@
         <select id="postalCode"
                 th:field="*{postalCode}"
                 class="form-control mb-4 w-25">
-            <option th:each="postalCode : ${cityList}"
-                    th:value="${postalCode}"
-                    th:text="${postalCode.getCityName()}"></option>
+            <option value="">--select city--</option>
+            <option th:each="city : ${cityList}"
+                    th:value="${city.postCode}"
+                    th:text="${city.getCityName()}"></option>
         </select>
         <label class="l-txt">Current year of study:</label>
         <input type="text" required

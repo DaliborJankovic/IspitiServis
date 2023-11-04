@@ -1,7 +1,7 @@
 <div>
-    <a th:href="@{/log_in}" class="btn btn-primary btn-sm mb-3 logout-button" id="logoutButton">
-        Log Out
-    </a>
+<!--    <a th:href="@{/log_in}" class="btn btn-primary btn-sm mb-3 logout-button" id="logoutButton">-->
+<!--        Log Out-->
+<!--    </a>-->
 </div>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center">
@@ -10,5 +10,17 @@
         <a th:href="@{/subjects/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Subjects</a>
         <a th:href="@{/students/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Students</a>
         <a th:href="@{/cities/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Cities</a>
+        <div class="dropdown">
+            <a th:href="@{/exam_period/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Exam periods</a>
+            <ul class="dropdown-content">
+                <li><a href="?id=52" style="text-decoration: none">Active</a></li>
+                <li><a href="?id=53" style="text-decoration: none">Upcoming</a></li>
+            </ul>
+        </div>
+        <a th:href="@{/log_in}" class="btn btn-primary btn-sm mb-3 logout-button" id="logoutButton">
+            Log Out
+        </a>
     </nav>
 </div>
+
+

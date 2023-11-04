@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container">
+    <h3>Exams</h3>
+    <hr>
+    <p class="h4 mb-4">Add new exam</p>
+    <form action="#" th:action="@{/exam/save}"
+          th:object="${exam}" method="post">
+        <input type="hidden"
+               th:field="*{examId}">
+        <label class="l-txt" for="examPeriod">Exam period:</label>
+        <select id="examPeriod"
+                th:field="*{examPeriod}"
+                class="form-control mb-4 w-25">
+            <option value="">--select exam period--</option>
+            <option th:each="exPer : ${examPeriodList}"
+                    th:value="${exPer.examPeriodId}"
+                    th:text="${exPer.name}"></option>
+        </select>
+        <label class="l-txt" for="subject">Subject:</label>
+        <select id="subject"
+                th:field="*{subject}"
+                class="form-control mb-4 w-25">
+            <option value="">--select subject--</option>
+            <option th:each="tempSubject : ${subjectList}"
+                    th:value="${tempSubject.subId}"
+                    th:text="${tempSubject.name}"></option>
+        </select>
+
+        <label class="l-txt" for="professor">Professor:</label>
+        <select id="professor"
+                th:field="*{professor}"
+                class="form-control mb-4 w-25">
+            <option value="">--select professor--</option>
+            <option th:each="tempProfessor : ${professorList}"
+                    th:value="${tempProfessor.username}"
+                    th:text="${tempProfessor.firstName + ' ' + tempProfessor.lastName}"></option>
+        </select>
+
+        <label class="l-txt" for="dateofexam">Date of exam:</label>
+        <input type="date" required
+               id="dateofexam" name="newDate"
+               th:field="*{dateOfExam}"
+               class="form-control mb-4 w-25">
+
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+</div>
+</body>
+</html>
+
+<!--JavaScript-->
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--        $('#datepicker').datepicker();-->
+<!--    });-->
+<!--</script>-->

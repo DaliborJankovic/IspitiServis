@@ -27,6 +27,7 @@
         <div class="form-group">
             <label class="l-txt" for="semester">Select Semester:</label>
             <select th:field="*{semester}" id="semester" class="form-control mb-4 w-25">
+                <option value="">--select semester--</option>
                 <option th:each="sem : ${T(DaliborJankovic.StudentskiServis.enums.Semester).values()}"
                         th:value="${sem}"
                         th:text="${#strings.capitalize(sem.toString())}">Spring

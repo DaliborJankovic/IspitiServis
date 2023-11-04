@@ -12,7 +12,7 @@ public interface SubjectRepository extends JpaRepository<Subject, Long> {
     void addProfessorToSubject(@Param("professorId") String professorId, @Param("subjectId") Long subjectId);
 
     @Modifying
-    @Query(value = "DELETE FROM professor_subject WHERE professor_id = (:professorId) AND subject_id = (:subjectId)", nativeQuery = true)
+    @Query(value = "SELECT FROM exam WHERE professor_id = (:professorId) AND subject_id = (:subjectId)", nativeQuery = true)
     void deleteProfessorFromSubject(@Param("professorId") String professorId, @Param("subjectId") Long subjectId);
 }
 

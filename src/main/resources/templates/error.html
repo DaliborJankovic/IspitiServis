@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container justify-content-center">
+    <hr>
+    <h1>An error occurred</h1>
+    <hr>
+    <h3 style="text-align: center; color: darkred">Error</h3>
+    <div th:if="${errorMessages}">
+        <div class="alert alert-danger">
+            <ul>
+                <li th:each="errorMessage : ${errorMessages}" th:text="${errorMessage}"></li>
+            </ul>
+        </div>
+        <div style="text-align: right; margin-top: 20px;">
+            <a class="btn btn-info btn-sm update-button"
+               id="goBackButton">
+                Retry
+            </a>
+        </div>
+        <script>
+            document.getElementById('goBackButton').addEventListener('click', function() {
+                window.history.go(-1);
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>
+

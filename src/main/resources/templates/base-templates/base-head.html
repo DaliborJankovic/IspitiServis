@@ -64,7 +64,7 @@
         color: darkred;
         position: fixed;
         top: 10px;
-        right: 20px; /* Optional: You can change this to 'right: 0;' for a button on the left side */
+        right: 20px;
     }
 
     .custom-container {
@@ -85,6 +85,43 @@
         border-color: gray;
     }
 
+    /* Initially hide the dropdown content */
+    .dropdown-content {
+        border-radius: 5px;
+        display: none;
+        position: absolute;
+        background-color: gray;
+        min-width: 120px;
+        z-index: 1;
+        padding: 0;
+    }
+
+    /*Style the dropdown button (the "Exam periods" button)*/
+    .dropdown:hover .dropdown-content {
+        display: block; /* Show the dropdown content on hover */
+    }
+
+    /* Style the dropdown links */
+    .dropdown-content li {
+        border-radius: 5px;
+        padding: 8px;
+        background-color: gray;
+        border-color: gray;
+        color: #ddc173;
+        display: block;
+    }
+
+    /* Change the color of the links on hover */
+    .dropdown-content li:hover {
+        background-color: darkgray;
+    }
+
+    .exam_date {
+        font-style: italic;
+        font-weight: normal;
+        text-decoration: underline;
+    }
+
 </style>
 
 <!--JavaScript-->
@@ -100,5 +137,7 @@
         });
     });
 </script>
+
+
 
 

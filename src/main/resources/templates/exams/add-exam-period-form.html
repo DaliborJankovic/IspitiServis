@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container">
+    <h3>Exams period</h3>
+    <hr>
+    <p class="h4 mb-4">Add new exam period</p>
+    <form action="#" th:action="@{/exam_period/save}"
+          th:object="${examPeriod}" method="post">
+        <input type="hidden"
+               th:field="*{examPeriodId}">
+        <label class="l-txt">Name:</label>
+        <input type="text" required
+               th:field="*{name}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt" for="startDate">Start date:</label>
+        <input type="date" required
+               id="startDate" name="datepicker"
+               th:field="*{startDate}"
+               class="form-control mb-4 w-25">
+        <label class="l-txt" for="endDate">End date:</label>
+        <input type="date" required
+               id="endDate" name="datepicker"
+               th:field="*{endDate}"
+               class="form-control mb-4 w-25">
+        <div class="form-group">
+            <label class="l-txt" for="status">Select status:</label>
+            <select th:field="*{status}" id="status" class="form-control mb-4 w-25">
+                <option value="">--select status--</option>
+                <option th:each="st : ${T(DaliborJankovic.StudentskiServis.enums.ExamPeriodStatus).values()}"
+                        th:value="${st}"
+                        th:text="${#strings.capitalize(st.toString())}">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+</div>
+</body>
+</html>

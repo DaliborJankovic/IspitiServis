@@ -2,11 +2,82 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:insert="~{base-templates/base-head.html}"></head>
 <body>
-<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
 <div class="container justify-content-center">
-  <hr>
-  <h1>Welcome</h1>
-  <hr>
+    <hr>
+    <h1>Exam Periods</h1>
+    <hr>
+    <h3 style="text-align: center">Active exam periods</h3>
+    <table class="table table-bordered table-striped custom-table" style="margin: 0 auto; width: 80%">
+        <thead class="table-dark">
+        <tr>
+            <th>Exam period</th>
+            <th>Exam period date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody style="border: solid #ddc173 2.0pt;">
+        <tr th:each="exPer : ${active}" style="background-color: #d8edc8">
+            <td style="text-align: left; width: 40%; font-size: 1.2em;">
+                <a th:href="@{/exam_period/{examPeriodId}(examPeriodId=${exPer.examPeriodId})}">
+                <strong th:text="${exPer.name}"></strong>
+                </a>
+            </td>
+            <td style="text-align: left;">
+                <strong>Start date:
+                    <span th:text="${exPer.startDate}" class="exam_date"></span> / End date:
+                    <span th:text="${exPer.endDate}" class="exam_date"></span>
+                </strong>
+            </td>
+            <td style="text-align: right;">
+                <a th:href="@{/examRegistration/newExamRegistration(examPeriodId=${exPer.examPeriodId})}">
+                    Register for the exam
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h3 style="text-align: center">Upcoming exam periods</h3>
+    <table class="table table-bordered table-striped custom-table" style="margin: 0 auto; width: 80%">
+        <thead class="table-dark">
+        <tr>
+            <th>Exam period</th>
+            <th>Exam period date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody style="border: solid #ddc173 2.0pt;">
+        <tr th:each="exPer : ${upcoming}" style="background-color: #82d5fc">
+            <td style="text-align: left; width: 40%; font-size: 1.2em;">
+                <a th:href="@{/exam_period/{examPeriodId}(examPeriodId=${exPer.examPeriodId})}">
+                    <strong th:text="${exPer.name}"></strong>
+                </a>
+            </td>
+            <td style="text-align: left;">
+                <strong>Start date:
+                    <span th:text="${exPer.startDate}" class="exam_date"></span> / End date:
+                    <span th:text="${exPer.endDate}" class="exam_date"></span>
+                </strong>
+            </td>
+            <td style="text-align: right;">
+                <a th:href="@{/examRegistration/newExamRegistration(examPeriodId=${exPer.examPeriodId})}">
+                    Register for the exam
+                </a>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <a th:href="@{/exam_period/addExamPeriod}"
+       class="btn btn-primary btn-sm mb-3 update-button">
+        Add new Exam period
+    </a>
+    <a th:href="@{/exam/addExam}"
+       class="btn btn-primary btn-sm mb-3 update-button">
+        Add Exam
+    </a>
 </div>
 </body>
 </html>
+
+

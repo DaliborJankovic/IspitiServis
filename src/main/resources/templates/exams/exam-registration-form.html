@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div class="container">
+  <hr>
+  <h1>Exam Registrations</h1>
+  <hr>
+  <h3 th:object="${exam}" style="text-align: center; margin-top: 20px;">
+    <span th:text="${exam.subject.name}"/></h3>
+  <hr>
+  <table class="table table-bordered table-striped custom-table" style="margin: 0 auto; width: 80%">
+    <thead class="table-dark">
+    <tr>
+      <th>Student</th>
+      <th>Exam / Subject</th>
+      <th>Grade</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="examReg : ${examRegistrationList}">
+      <td style="text-align: left; width: 40%; font-size: 1.2em;">
+        <strong th:text="${examReg.student.getFirstName() + ' ' + examReg.student.getLastName()}"></strong>
+      </td>
+      <td th:text="${examReg.exam.subject.name}" class="exam_date"/>
+      <td th:text="${examReg.grade}"/>
+      <td>
+<!--        <a th:href="@{/examRegistration/grade/{examRegistrationId}(examRegistrationId=${examReg.id})}"-->
+<!--           class="btn btn-info btn-sm update-button">-->
+<!--          Edit-->
+<!--        </a>-->
+        <a th:href="@{/examRegistration/delete(examRegId=${examReg.id})}"
+           class="btn btn-danger btn-sm delete-button"
+           onclick="if (!(confirm('Are u sure you want to remove this exam registration?'))) return false">
+          Remove
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+<!--  <a th:href="@{/exam/addExam}"-->
+<!--     class="btn btn-primary btn-sm mb-3 update-button">-->
+<!--    Add Exam-->
+<!--  </a>-->
+</div>
+</body>
+</html>

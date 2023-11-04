@@ -38,9 +38,10 @@
         <select id="thePostalCode"
                 th:field="*{postalCode}"
                 class="form-control mb-4 w-25">
-            <option th:each="postalCode : ${cityList}"
-                    th:value="${postalCode}"
-                    th:text="${postalCode.getCityName()}"></option>
+            <option value="">--select city--</option>
+            <option th:each="city : ${cityList}"
+                    th:value="${city.postCode}"
+                    th:text="${city.getCityName()}"></option>
         </select>
         <label class="l-txt">Phone number:</label>
         <input type="text"
@@ -53,13 +54,12 @@
         <input type="date"  required
                id="reelectionDate" name="reelectionDate"
                th:field="*{reelectionDate}"
-               class="form-control mb-4 w-25"
-               th:value="${'selectedDate'}">
-        <div id="selectedDate"></div>
+               class="form-control mb-4 w-25">
         <label class="l-txt" for="theTitle">Title:</label>
         <select id="theTitle" required
                 th:field="*{title}"
                 class="form-control mb-4 w-25">
+            <option value="">--select title--</option>
             <option th:each="title : ${titlesList}"
                     th:value="${title.getTitleId()}"
                     th:text="${title.getTeacherTitle()}"></option>
@@ -70,12 +70,3 @@
 </div>
 </body>
 </html>
-
-<!--JavaScript-->
-<script>
-    document.getElementById("reelectionDate").addEventListener("change", function () {
-        var datePicker = this;
-        var selectedDate = datePicker.value;
-        document.getElementById("selectedDate").textContent = "Selected Date: " + selectedDate;
-    });
-</script>

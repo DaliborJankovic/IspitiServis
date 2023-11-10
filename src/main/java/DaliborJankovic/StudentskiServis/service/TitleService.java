@@ -8,7 +8,7 @@ public interface TitleService {
 
     void save(Title title);
 
-    Title findById (Integer id);
+    Title findById(Integer id);
 
     List<Title> findAll();
 

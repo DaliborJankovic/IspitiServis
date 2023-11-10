@@ -3,7 +3,7 @@ package DaliborJankovic.StudentskiServis.service.impl;
 import DaliborJankovic.StudentskiServis.dao.SubjectRepository;
 import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
 import DaliborJankovic.StudentskiServis.service.SubjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,14 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SubjectServiceImpl implements SubjectService {
 
-    private SubjectRepository subjectRepository;
-
-    @Autowired
-    public SubjectServiceImpl(SubjectRepository subjectRepository) {
-        this.subjectRepository = subjectRepository;
-    }
+    private final SubjectRepository subjectRepository;
 
     @Override
     @Transactional

@@ -8,7 +8,7 @@ public interface StudentService {
 
     void save(Student theStudent);
 
-    Student findById (String id);
+    Student findById(String id);
 
     List<Student> findAll();
 

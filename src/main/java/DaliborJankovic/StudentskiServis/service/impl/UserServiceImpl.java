@@ -3,21 +3,17 @@ package DaliborJankovic.StudentskiServis.service.impl;
 import DaliborJankovic.StudentskiServis.dao.UserRepository;
 import DaliborJankovic.StudentskiServis.entity.users.User;
 import DaliborJankovic.StudentskiServis.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserRepository userRepository;
 
     @Override
     public void save(User user) {
@@ -28,10 +24,9 @@ public class UserServiceImpl implements UserService {
     public User findById(String id) {
         Optional<User> result = userRepository.findById(id);
         User tempUser = null;
-        if(result.isPresent()) {
+        if (result.isPresent()) {
             tempUser = result.get();
-        }
-        else {
+        } else {
             throw new RuntimeException("User not found!");
         }
         return tempUser;

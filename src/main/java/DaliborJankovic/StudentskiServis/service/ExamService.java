@@ -2,7 +2,6 @@ package DaliborJankovic.StudentskiServis.service;
 
 import DaliborJankovic.StudentskiServis.entity.exams.Exam;
 import DaliborJankovic.StudentskiServis.entity.exams.ExamPeriod;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ public interface ExamService {
 
     void save(Exam exam);
 
-    Exam findById (Long id);
+    Exam findById(Long id);
 
     List<Exam> findAll();
 

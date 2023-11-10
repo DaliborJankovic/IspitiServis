@@ -4,6 +4,7 @@ import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
 import DaliborJankovic.StudentskiServis.entity.users.Professor;
 import DaliborJankovic.StudentskiServis.service.ProfessorService;
 import DaliborJankovic.StudentskiServis.service.SubjectService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -13,15 +14,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/subjects")
+@RequiredArgsConstructor
 public class SubjectController {
 
-    private SubjectService subjectService;
-    private ProfessorService professorService;
-
-    public SubjectController(SubjectService subjectService, ProfessorService professorService) {
-        this.subjectService = subjectService;
-        this.professorService = professorService;
-    }
+    private final SubjectService subjectService;
+    private final ProfessorService professorService;
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -74,8 +71,7 @@ public class SubjectController {
     }
 
     @PostMapping("/{subjectId}/addProfessor/{professorId}")
-    public String addProfessorToSubject(@PathVariable String professorId,
-                                        @PathVariable Long subjectId) {
+    public String addProfessorToSubject(@PathVariable String professorId, @PathVariable Long subjectId) {
         Subject tempSubject = subjectService.findById(subjectId);
         if ((tempSubject.getProfessors().contains(professorService.findById(professorId)))) {
             return "redirect:/subjects/{subjectId}";
@@ -86,8 +82,7 @@ public class SubjectController {
     }
 
     @PostMapping("/{subjectId}/removeProfessor/{professorId}")
-    public String removeProfessorToSubject(@PathVariable String professorId,
-                                           @PathVariable Long subjectId) {
+    public String removeProfessorToSubject(@PathVariable String professorId, @PathVariable Long subjectId) {
         subjectService.deleteProfessorFromSubject(professorId, subjectId);
         return "redirect:/subjects/{subjectId}";
     }

@@ -20,7 +20,7 @@
         <tr th:each="exPer : ${active}" style="background-color: #d8edc8">
             <td style="text-align: left; width: 40%; font-size: 1.2em;">
                 <a th:href="@{/exam_period/{examPeriodId}(examPeriodId=${exPer.examPeriodId})}">
-                <strong th:text="${exPer.name}"></strong>
+                    <strong th:text="${exPer.name}"></strong>
                 </a>
             </td>
             <td style="text-align: left;">

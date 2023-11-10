@@ -8,7 +8,7 @@ import DaliborJankovic.StudentskiServis.service.ExamPeriodService;
 import DaliborJankovic.StudentskiServis.service.ExamRegistrationService;
 import DaliborJankovic.StudentskiServis.service.ExamService;
 import DaliborJankovic.StudentskiServis.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,26 +17,20 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/examRegistration")
+@RequiredArgsConstructor
 public class ExamRegistrationController {
 
-    private ExamRegistrationService examRegistrationService;
-    private StudentService studentService;
-    private ExamService examService;
-    private ExamPeriodService examPeriodService;
+    private final ExamRegistrationService examRegistrationService;
+    private final StudentService studentService;
+    private final ExamService examService;
+    private final ExamPeriodService examPeriodService;
 
-    @Autowired
-    public ExamRegistrationController(ExamRegistrationService examRegistrationService, StudentService studentService,
-                                      ExamService examService, ExamPeriodService examPeriodService) {
-        this.examRegistrationService = examRegistrationService;
-        this.studentService = studentService;
-        this.examService = examService;
-        this.examPeriodService = examPeriodService;
-    }
 
     @GetMapping("/list{examId}")
     public String List(@PathVariable Long examId, Model theModel) {
         Exam theExam = examService.findById(examId);
-        List<ExamRegistration> theExamRegistrationList = examRegistrationService.findAllExamsRegistrationsInExam(theExam);
+        List<ExamRegistration> theExamRegistrationList = examRegistrationService
+                .findAllExamsRegistrationsInExam(theExam);
         theModel.addAttribute("exam", theExam);
         theModel.addAttribute("examRegistrationList", theExamRegistrationList);
         return "exams/exam-registration-form";
@@ -55,20 +49,47 @@ public class ExamRegistrationController {
         return "exams/new-exam-registration-form";
     }
 
-    @GetMapping("/grade/{examRegistrationId}")
-    public String grade (@PathVariable Long examRegistrationId,
-                                       @RequestParam("examPeriodId") int epId,Model theModel) {
-        ExamRegistration theExamRegistration = examRegistrationService.findById(examRegistrationId);
+    @GetMapping("/multiExamRegistration")
+    public String multiExamRegistration(@RequestParam("examPeriodId") int epId, Model theModel) {
+        ExamRegistration theExamRegistration = new ExamRegistration();
         theModel.addAttribute("examRegistration", theExamRegistration);
         examRegistrationAttributes(epId, theModel);
-        return "exams/new-exam-registration-form";
+        return "exams/multi-exam-registration-form";
+    }
+
+//    @GetMapping("/grade/{examRegistrationId}")
+//    public String grade (@PathVariable Long examRegistrationId,
+//                                       @RequestParam("examPeriodId") int epId,Model theModel) {
+//        ExamRegistration theExamRegistration = examRegistrationService.findById(examRegistrationId);
+//        theModel.addAttribute("examRegistration", theExamRegistration);
+//        examRegistrationAttributes(epId, theModel);
+//        return "exams/new-exam-registration-form";
+//    }
+
+    @PostMapping("/saveAll")
+    public String saveAllExamRegistrations(@RequestParam("studentId") String studentId,
+                                           @RequestParam("selectedExams") List<Long> selectedExamIds, Model theModel) {
+        Student student = studentService.findById(studentId);
+        for (Long examId : selectedExamIds) {
+            Exam exam = examService.findById(examId);
+            List<String> errorMessages = examRegistrationService.examValidation(student, exam);
+            if (!errorMessages.isEmpty()) {
+                theModel.addAttribute("errorMessages", errorMessages);
+                return "error";
+            }
+            ExamRegistration examRegistration = new ExamRegistration();
+            examRegistration.setStudent(student);
+            examRegistration.setExam(exam);
+            examRegistrationService.save(examRegistration);
+        }
+        return "redirect:/exam_period/list";
     }
 
     @PostMapping("/save")
-    public String SaveExam(@ModelAttribute("examRegistration") ExamRegistration theExamRegistration,
-                           Model theModel) {
-        List<String> errorMessages = examRegistrationService.examValidation(theExamRegistration.getStudent(),
-                theExamRegistration.getExam());
+    public String SaveExamRegistration(@ModelAttribute("examRegistration") ExamRegistration theExamRegistration,
+                                       Model theModel) {
+        List<String> errorMessages = examRegistrationService.examValidation(
+                theExamRegistration.getStudent(), theExamRegistration.getExam());
         if (!errorMessages.isEmpty()) {
             theModel.addAttribute("errorMessages", errorMessages);
             return "error";

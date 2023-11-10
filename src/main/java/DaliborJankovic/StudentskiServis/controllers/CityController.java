@@ -2,22 +2,20 @@ package DaliborJankovic.StudentskiServis.controllers;
 
 import DaliborJankovic.StudentskiServis.entity.users.details.City;
 import DaliborJankovic.StudentskiServis.service.CityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Comparator;
 import java.util.List;
 
 @Controller
 @RequestMapping("/cities")
+@RequiredArgsConstructor
 public class CityController {
-    private CityService cityService;
+    private final CityService cityService;
 
-    public CityController(CityService cityService) {
-        this.cityService = cityService;
-    }
 
     @GetMapping("/list")
     public String citiesList(Model model) {
@@ -35,8 +33,8 @@ public class CityController {
     }
 
     @GetMapping("/add_from_student")
-    public String addCityFromStudent(@RequestParam(name = "StudentId", required = false)
-                                     String StudentId, Model theModel) {
+    public String addCityFromStudent(@RequestParam(name = "StudentId", required = false) String StudentId,
+                                     Model theModel) {
         City theCity = new City();
         if (!StudentId.isEmpty()) {
             theModel.addAttribute("userId", StudentId);
@@ -47,8 +45,8 @@ public class CityController {
     }
 
     @GetMapping("/add_from_professor")
-    public String addCityFromProfessor(@RequestParam(name = "ProfessorId", required = false)
-                                       String ProfessorId, Model theModel) {
+    public String addCityFromProfessor(@RequestParam(name = "ProfessorId", required = false) String ProfessorId,
+                                       Model theModel) {
         City theCity = new City();
         if (!ProfessorId.isEmpty()) {
             theModel.addAttribute("userId", ProfessorId);
@@ -66,18 +64,15 @@ public class CityController {
         if ("add_from_student".equals(redirect)) {
             if (!setId.isEmpty()) {
                 return "redirect:/students/update/" + setId;
-            } else {
-                return "redirect:/students/add";
             }
+            return "redirect:/students/add";
         } else if ("add_from_professor".equals(redirect)) {
-            if(!setId.isEmpty()){
+            if (!setId.isEmpty()) {
                 return "redirect:/professors/update/" + setId;
-            }else {
-                return "redirect:/professors/add";
             }
-        } else {
-            return "redirect:/cities/list";
+            return "redirect:/professors/add";
         }
+        return "redirect:/cities/list";
     }
 
     @GetMapping("/delete")

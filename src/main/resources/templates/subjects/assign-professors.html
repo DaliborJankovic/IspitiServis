@@ -11,7 +11,7 @@
         <tbody>
         <tr th:each="tempProfessor : ${professorList}">
             <td>
-                <a >
+                <a>
                     <span th:text="${tempProfessor.firstName + ' ' + tempProfessor.lastName + ' / ' + tempProfessor.title.teacherTitle}"/>
                 </a>
             </td>
@@ -19,7 +19,8 @@
                 <form th:action="@{/subjects/{subjectId}/addProfessor/{professorId}(subjectId=${subject.subId}, professorId=${tempProfessor.username})}"
                       method="post">
                     <button type="submit" class="btn btn-sm update-button"
-                            onclick="return confirm('Are you sure you want to assign this professor?')">Assign</button>
+                            onclick="return confirm('Are you sure you want to assign this professor?')">Assign
+                    </button>
                 </form>
             </td>
         </tr>

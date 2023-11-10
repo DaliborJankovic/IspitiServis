@@ -29,20 +29,6 @@ public class Student extends User {
     @Max(value = 5)
     private int currentYearOfStudy;
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-////        if (!(o instanceof Student student)) return false;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        if (!super.equals(o)) return false;
-//        Student student = (Student) o;
-//        return indexYear == student.indexYear && currentYearOfStudy == student.currentYearOfStudy && Objects.equals(indexNumber, student.indexNumber);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(super.hashCode(), indexNumber, indexYear, currentYearOfStudy);
-//    }
 }
 
 

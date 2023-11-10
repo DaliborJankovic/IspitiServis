@@ -8,7 +8,7 @@ public interface CityService {
 
     void save(City city);
 
-    City findById (Integer id);
+    City findById(Integer id);
 
     List<City> findAll();
 

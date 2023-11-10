@@ -1,7 +1,6 @@
 package DaliborJankovic.StudentskiServis.service;
 
 import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
-import DaliborJankovic.StudentskiServis.entity.users.Professor;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ public interface SubjectService {
 
     void save(Subject theSubject);
 
-    Subject findById (Long id);
+    Subject findById(Long id);
 
     List<Subject> findAll();
 

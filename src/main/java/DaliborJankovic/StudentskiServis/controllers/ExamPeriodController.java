@@ -4,6 +4,7 @@ import DaliborJankovic.StudentskiServis.entity.exams.Exam;
 import DaliborJankovic.StudentskiServis.entity.exams.ExamPeriod;
 import DaliborJankovic.StudentskiServis.service.ExamPeriodService;
 import DaliborJankovic.StudentskiServis.service.ExamService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +13,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/exam_period")
+@RequiredArgsConstructor
 public class ExamPeriodController {
 
-    private ExamPeriodService examPeriodService;
-    private ExamService examService;
-
-    public ExamPeriodController(ExamPeriodService examPeriodService, ExamService examService) {
-        this.examPeriodService = examPeriodService;
-        this.examService = examService;
-    }
+    private final ExamPeriodService examPeriodService;
+    private final ExamService examService;
 
     @GetMapping("/list")
     public String List(Model theModel) {
@@ -29,12 +26,20 @@ public class ExamPeriodController {
         return "exams/exam-period-form";
     }
 
-    @GetMapping("/activeList")
-    public String activeList(Model theModel) {
+    @GetMapping("/activeRegList")
+    public String activeRegPeriod(Model theModel) {
         List<ExamPeriod> theExamPeriodList = examPeriodService.findAll();
-        examPeriodService.isActive(theExamPeriodList, theModel);
-        return "exams/exam-period-form";
+        examPeriodService.validateRegistrationPeriod(theExamPeriodList, theModel);
+        return "exams/active-exam-registration";
     }
+
+
+//    @GetMapping("/activeList")
+//    public String activeList(Model theModel) {
+//        List<ExamPeriod> theExamPeriodList = examPeriodService.findAll();
+//        examPeriodService.isActive(theExamPeriodList, theModel);
+//        return "exams/exam-period-form";
+//    }
 
     @GetMapping("{examPeriodId}")
     public String viewExamPeriod(@PathVariable int examPeriodId, Model theModel) {

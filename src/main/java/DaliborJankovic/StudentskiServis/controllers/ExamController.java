@@ -5,6 +5,7 @@ import DaliborJankovic.StudentskiServis.entity.exams.ExamPeriod;
 import DaliborJankovic.StudentskiServis.entity.subjects.Subject;
 import DaliborJankovic.StudentskiServis.entity.users.Professor;
 import DaliborJankovic.StudentskiServis.service.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +14,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/exam")
+@RequiredArgsConstructor
 public class ExamController {
 
-    private ExamPeriodService examPeriodService;
-    private ExamService examService;
-    private SubjectService subjectService;
-    private ProfessorService professorService;
-
-    public ExamController(ExamPeriodService examPeriodService, ExamService examService,
-                          SubjectService subjectService, ProfessorService professorService) {
-        this.examPeriodService = examPeriodService;
-        this.examService = examService;
-        this.subjectService = subjectService;
-        this.professorService = professorService;
-    }
+    private final ExamPeriodService examPeriodService;
+    private final ExamService examService;
+    private final SubjectService subjectService;
+    private final ProfessorService professorService;
 
     @GetMapping("/addExam")
     public String addExam(Model theModel) {
@@ -69,6 +63,5 @@ public class ExamController {
         model.addAttribute("subjectList", theSubjectList);
         model.addAttribute("professorList", theProfessorList);
     }
-
 
 }

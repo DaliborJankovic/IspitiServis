@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:insert="~{base-templates/base-head.html}"></head>
 <body>
-<div th:insert="~{base-templates/nav-bar.html}"> </div>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
 <div class="container">
     <h3>Professors</h3>
     <hr>
@@ -34,7 +34,8 @@
                th:field="*{address}"
                class="form-control mb-4 w-25">
         <label class="l-txt" for="thePostalCode">Postal Code:</label>
-        <a th:href="@{/cities/add_from_professor(ProfessorId=${professor.username})}" class="add-city-button">Dodaj Grad</a>
+        <a th:href="@{/cities/add_from_professor(ProfessorId=${professor.username})}" class="add-city-button">Dodaj
+            Grad</a>
         <select id="thePostalCode"
                 th:field="*{postalCode}"
                 class="form-control mb-4 w-25">
@@ -51,7 +52,7 @@
             <p th:errors="*{phoneNumber}"></p>
         </div>
         <label class="l-txt" for="reelectionDate">Reelection date:</label>
-        <input type="date"  required
+        <input type="date" required
                id="reelectionDate" name="reelectionDate"
                th:field="*{reelectionDate}"
                class="form-control mb-4 w-25">

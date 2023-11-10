@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{base-templates/base-head.html}"></head>
+<body>
+<div th:insert="~{base-templates/nav-bar.html}"></div>
+<div class="container">
+    <h3>Exam registration</h3>
+    <hr>
+    <h3 th:object="${examPeriod}" style="text-align: center; margin-top: 20px;">
+        <span th:text="${examPeriod.name} + ' exam period'"/></h3>
+    <hr>
+    <form action="#" th:action="@{/examRegistration/saveAll}"
+          th:object="${examRegistration}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label class="l-txt" for="student">Student:</label>
+        <select id="student"
+                th:field="*{student}"
+                class="form-control mb-4 w-25">
+            <option value="">--select student--</option>
+            <option th:each="student : ${studentsList}"
+                    th:value="${student.username}"
+                    th:text="${student.firstName + ' ' + student.lastName}"></option>
+        </select>
+        <input type="hidden" id="studentId" name="studentId">
+        <script>
+            const studentSelect = document.getElementById("student");
+            const studentIdInput = document.getElementById("studentId");
+
+            studentSelect.addEventListener("change", function () {
+                studentIdInput.value = studentSelect.value;
+            });
+        </script>
+        <div class="form-group">
+            <label class="l-txt">Exams:</label>
+            <div th:each="exam : ${examList}">
+                <div class="form-check">
+                    <input type="checkbox" id="${'exam_' + exam.examId}" name="selectedExams" th:value="${exam.examId}"
+                           class="form-check-input"/>
+                    <label th:for="${'exam_' + exam.examId}" class="form-check-label"
+                           th:text="${exam.subject.name}"></label>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-info col-2 update-button">Save</button>
+    </form>
+    <hr>
+</div>
+</body>
+</html>

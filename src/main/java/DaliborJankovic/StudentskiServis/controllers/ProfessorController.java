@@ -7,6 +7,7 @@ import DaliborJankovic.StudentskiServis.service.CityService;
 import DaliborJankovic.StudentskiServis.service.ProfessorService;
 import DaliborJankovic.StudentskiServis.service.TitleService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,17 +17,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/professors")
+@RequiredArgsConstructor
 public class ProfessorController {
 
-    private ProfessorService professorService;
-    private CityService cityService;
-    private TitleService titleService;
-
-    public ProfessorController(ProfessorService professorService, CityService cityService, TitleService titleService) {
-        this.professorService = professorService;
-        this.cityService = cityService;
-        this.titleService = titleService;
-    }
+    private final ProfessorService professorService;
+    private final CityService cityService;
+    private final TitleService titleService;
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -65,7 +61,8 @@ public class ProfessorController {
     }
 
     @PostMapping("/save")
-    public String saveProfessor(@ModelAttribute("professor") @Valid Professor theProfessor, BindingResult bindingResult) {
+    public String saveProfessor(@ModelAttribute("professor") @Valid Professor theProfessor,
+                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "professors/add-professor-form";
         }

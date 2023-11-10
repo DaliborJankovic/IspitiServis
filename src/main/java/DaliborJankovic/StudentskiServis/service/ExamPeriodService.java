@@ -17,6 +17,8 @@ public interface ExamPeriodService {
 
     void isActive(List<ExamPeriod> examPeriodList, Model theModel);
 
+    void validateRegistrationPeriod(List<ExamPeriod> examPeriodList, Model model);
+
     List<String> validateExamPeriod(List<ExamPeriod> examPeriodList, ExamPeriod currentExamPeriod);
 
 

@@ -44,13 +44,4 @@ public class Subject implements DaliborJankovic.StudentskiServis.entity.Entity {
     @ManyToMany(mappedBy = "subjects")
     private List<Professor> professors;
 
-    //        metoda za dodavanje Profesora
-    public void addProfessor(Professor professor) {
-
-        if (professors == null) {
-            professors = new ArrayList<>();
-        }
-        professors.add(professor);
-    }
-
 }

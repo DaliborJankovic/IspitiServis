@@ -4,6 +4,7 @@ import DaliborJankovic.StudentskiServis.entity.users.Student;
 import DaliborJankovic.StudentskiServis.entity.users.details.City;
 import DaliborJankovic.StudentskiServis.service.CityService;
 import DaliborJankovic.StudentskiServis.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +14,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/students")
+@RequiredArgsConstructor
 public class StudentController {
 
-    private StudentService studentService;
-    private CityService cityService;
-
-    public StudentController(StudentService studentService, CityService cityService) {
-        this.studentService = studentService;
-        this.cityService = cityService;
-    }
+    private final StudentService studentService;
+    private final CityService cityService;
 
     @GetMapping("/list")
     public String list(Model model) {

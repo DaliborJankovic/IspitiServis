@@ -3,7 +3,7 @@ package DaliborJankovic.StudentskiServis.service.impl;
 import DaliborJankovic.StudentskiServis.dao.ProfessorRepository;
 import DaliborJankovic.StudentskiServis.entity.users.Professor;
 import DaliborJankovic.StudentskiServis.service.ProfessorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,14 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProfessorServiceImpl implements ProfessorService {
 
-    private ProfessorRepository professorRepository;
-
-    @Autowired
-    public ProfessorServiceImpl(ProfessorRepository professorRepository) {
-        this.professorRepository = professorRepository;
-    }
+    private final ProfessorRepository professorRepository;
 
     @Override
     @Transactional
@@ -33,8 +29,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 
         if (result.isPresent()) {
             tempProfessor = result.get();
-        }
-        else {
+        } else {
             throw new RuntimeException("There is no professor with id - " + id);
         }
 
@@ -47,5 +42,7 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public void deleteById(String id) { professorRepository.deleteById(id); }
+    public void deleteById(String id) {
+        professorRepository.deleteById(id);
+    }
 }

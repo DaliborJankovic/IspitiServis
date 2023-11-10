@@ -3,9 +3,8 @@ package DaliborJankovic.StudentskiServis.service.impl;
 import DaliborJankovic.StudentskiServis.dao.ExamRepository;
 import DaliborJankovic.StudentskiServis.entity.exams.Exam;
 import DaliborJankovic.StudentskiServis.entity.exams.ExamPeriod;
-import DaliborJankovic.StudentskiServis.entity.exams.ExamRegistration;
 import DaliborJankovic.StudentskiServis.service.ExamService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,14 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ExamServiceImpl implements ExamService {
 
-    private ExamRepository examRepository;
-
-    @Autowired
-    public ExamServiceImpl(ExamRepository examRepository) {
-        this.examRepository = examRepository;
-    }
+    private final ExamRepository examRepository;
 
     @Override
     public void save(Exam exam) {

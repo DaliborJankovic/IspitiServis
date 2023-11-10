@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Exam  implements DaliborJankovic.StudentskiServis.entity.Entity {
+public class Exam implements DaliborJankovic.StudentskiServis.entity.Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

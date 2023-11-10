@@ -6,7 +6,7 @@ import DaliborJankovic.StudentskiServis.entity.exams.ExamPeriod;
 import DaliborJankovic.StudentskiServis.entity.exams.ExamRegistration;
 import DaliborJankovic.StudentskiServis.entity.users.Student;
 import DaliborJankovic.StudentskiServis.service.ExamRegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,14 +16,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ExamRegistrationServiceImpl implements ExamRegistrationService {
 
-    private ExamRegistrationRepository examRegistrationRepository;
-
-    @Autowired
-    public ExamRegistrationServiceImpl(ExamRegistrationRepository examRegistrationRepository) {
-        this.examRegistrationRepository = examRegistrationRepository;
-    }
+    private final ExamRegistrationRepository examRegistrationRepository;
 
     @Override
     public void save(ExamRegistration examRegistration) {
@@ -70,7 +66,8 @@ public class ExamRegistrationServiceImpl implements ExamRegistrationService {
     public List<String> examValidation(Student student, Exam exam) {
         List<String> errorMessages = new ArrayList<>();
         if (exam.getSubject().getYearOfStudy() > student.getCurrentYearOfStudy()) {
-            errorMessages.add("Only students who have attended the subject are eligible for exam registration. " +
+            errorMessages.add("Only students who have attended " + exam.getSubject().getName() +
+                    " are eligible for exam registration. " +
                     "Please make sure the student has fulfilled the prerequisite attendance requirements " +
                     "before proceeding with registration.");
         }

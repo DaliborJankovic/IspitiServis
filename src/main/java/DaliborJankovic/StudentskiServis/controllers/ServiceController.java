@@ -1,5 +1,6 @@
 package DaliborJankovic.StudentskiServis.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +20,15 @@ public class ServiceController {
         return "homepage";
     }
 
+    @GetMapping("/log_out")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/log_in";
+    }
+
     @PostMapping("/authentication")
-    public String loginLogic(@RequestParam("username") String user, @RequestParam("password") String pass, Model model) {
+    public String loginLogic(@RequestParam("username") String user,
+                             @RequestParam("password") String pass, Model model) {
         if ("Dalibor".equals(user) && "111".equals(pass)) {
             return "redirect:/home";
         } else {
@@ -28,4 +36,5 @@ public class ServiceController {
             return "login_page";
         }
     }
+
 }

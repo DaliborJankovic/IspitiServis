@@ -1,8 +1,3 @@
-<div>
-<!--    <a th:href="@{/log_in}" class="btn btn-primary btn-sm mb-3 logout-button" id="logoutButton">-->
-<!--        Log Out-->
-<!--    </a>-->
-</div>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center">
         <a th:href="@{/home}" class="btn btn-primary btn-sm me-3 nav-buttons">Home</a>
@@ -15,9 +10,10 @@
             <ul class="dropdown-content">
                 <li><a href="?id=52" style="text-decoration: none">Active</a></li>
                 <li><a href="?id=53" style="text-decoration: none">Upcoming</a></li>
+                <li><a th:href="@{/exam_period/activeRegList}">Exam Registration</a></li>
             </ul>
         </div>
-        <a th:href="@{/log_in}" class="btn btn-primary btn-sm mb-3 logout-button" id="logoutButton">
+        <a th:href="@{/log_out}" class="btn btn-primary btn-sm mb-3 logout-button" id="logoutButton">
             Log Out
         </a>
     </nav>

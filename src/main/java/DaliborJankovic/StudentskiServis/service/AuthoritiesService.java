@@ -8,7 +8,7 @@ public interface AuthoritiesService {
 
     void save(Authorities authorities);
 
-    Authorities findById (Integer id);
+    Authorities findById(Integer id);
 
     List<Authorities> findAll();
 

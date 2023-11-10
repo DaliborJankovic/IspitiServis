@@ -8,7 +8,7 @@ public interface ProfessorService {
 
     void save(Professor theProfessor);
 
-    Professor findById (String id);
+    Professor findById(String id);
 
     List<Professor> findAll();
 

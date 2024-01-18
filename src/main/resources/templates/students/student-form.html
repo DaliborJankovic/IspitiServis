@@ -13,8 +13,16 @@
     <table class="table table-bordered table-striped w-75">
         <thead class="table-dark">
         <tr>
-            <th>Student</th>
-            <th>Index number</th>
+            <th>
+                Student
+                <a th:href="@{/students/list(sortBy='name', sortDirection='asc')}">&darr;</a>
+                <a th:href="@{/students/list(sortBy='name', sortDirection='desc')}">&uarr;</a>
+            </th>
+            <th>
+                Index number
+                <a th:href="@{/students/list(sortBy='indexNo', sortDirection='asc')}">&darr;</a>
+                <a th:href="@{/students/list(sortBy='indexNo', sortDirection='desc')}">&uarr;</a>
+            </th>
             <th>Action</th>
         </tr>
         </thead>
@@ -37,6 +45,57 @@
         </tr>
         </tbody>
     </table>
+    <div>
+        <label for="pageSize">Students per Page:</label>
+        <select name="pageSize" id="pageSize" onchange="changePageSize(this.value)">
+            <option th:each="option : ${pageSizeOptions}" th:value="${option}" th:selected="${option == pageSize}"
+                    th:text="${option}"></option>
+        </select>
+    </div>
+    <div>
+        <ul th:if="${totalPages > 1}" class="pagination">
+            <li><span>Page:&nbsp;&nbsp;&nbsp; </span></li>
+            <li th:if="${currentPage > 1}">
+                <a th:href="@{/students/list(page=${currentPage - 1}, pageSize=${pageSize})}">&lt;</a>
+                <span>&nbsp;&nbsp;</span>
+            </li>
+            <!-- Previous Page -->
+            <li th:if="${currentPage > 1}">
+                <a th:href="@{/students/list(page=${currentPage - 1}, pageSize=${pageSize})}"
+                   th:text="${currentPage - 1}"></a>
+                <span>&nbsp;</span>
+            </li>
+            <!-- Current Page -->
+            <li>
+                <a th:href="@{/students/list(page=${currentPage}, pageSize=${pageSize})}" th:text="${currentPage}"></a>
+                <span>&nbsp;</span>
+            </li>
+            <!-- Next Page -->
+            <li th:if="${currentPage < totalPages}">
+                <a th:href="@{/students/list(page=${currentPage + 1}, pageSize=${pageSize})}"
+                   th:text="${currentPage + 1}"></a>
+                <span>&nbsp;</span>
+            </li>
+            <!-- Ellipses -->
+            <li th:if="${currentPage < totalPages - 1}"><span> . . . &nbsp;</span></li>
+            <!-- Last Page -->
+            <li>
+                <a th:href="@{/students/list(page=${totalPages}, pageSize=${pageSize})}" th:text="${totalPages}"></a>
+                <span>&nbsp;&nbsp;</span>
+            </li>
+            <li th:if="${currentPage < totalPages}">
+                <a th:href="@{/students/list(page=${currentPage + 1}, pageSize=${pageSize})}">&gt;</a>
+                <span>&nbsp;</span>
+            </li>
+        </ul>
+    </div>
+    <script th:inline="javascript">
+        var currentPage = 0;
+
+        function changePageSize(pageSize) {
+            window.location.href = "/students/list?page=" + currentPage + "&pageSize=" + pageSize;
+        }
+    </script>
 </div>
 </body>
 </html>

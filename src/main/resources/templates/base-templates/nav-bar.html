@@ -6,10 +6,9 @@
         <a th:href="@{/students/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Students</a>
         <a th:href="@{/cities/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Cities</a>
         <div class="dropdown">
-            <a th:href="@{/exam_period/list}" class="btn btn-primary btn-sm me-3 nav-buttons">Exam periods</a>
+            <a class="btn btn-primary btn-sm me-3 nav-buttons">Exams</a>
             <ul class="dropdown-content">
-                <li><a href="?id=52" style="text-decoration: none">Active</a></li>
-                <li><a href="?id=53" style="text-decoration: none">Upcoming</a></li>
+                <li><a th:href="@{/exam_period/list}" >Exam periods</a></li>
                 <li><a th:href="@{/exam_period/activeRegList}">Exam Registration</a></li>
             </ul>
         </div>

@@ -33,6 +33,7 @@ public class CityController {
     }
 
     @GetMapping("/add_from_student")
+
     public String addCityFromStudent(@RequestParam(name = "StudentId", required = false) String StudentId,
                                      Model theModel) {
         City theCity = new City();

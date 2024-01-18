@@ -6,7 +6,7 @@ This web application is built using Java and Spring Boot, with HTML and Thymelea
 ## Getting Started
 1. 	Clone the repository:
 	```bash
-	git clone <https://github.com/DaliborJankovic/IspitiServis>
+	git clone https://github.com/DaliborJankovic/IspitiServis
 2.	Open the project in IntelliJ IDEA.
 3.	Configure the MySQL database by updating the following properties in 
 	'application.properties':
@@ -24,9 +24,9 @@ This web application is built using Java and Spring Boot, with HTML and Thymelea
 
 6.	Access the home page at http://localhost:8080/home.
 
-Features
+**Features**
 
-CRUD Operations:
+**CRUD Operations:**
 - Students
 - Professors
 - Subjects
@@ -34,27 +34,27 @@ CRUD Operations:
 - Exam Periods
 - Exam Registrations
 
-Paging:
+**Paging:**
 Student page supports paging with the ability to set the number of entities per page in ascending or descending order.
 
-Confirmation for Deletion:
+**Confirmation for Deletion:**
 Users are prompted to confirm their intention when deleting an entity.
 
-Exam Period Restrictions:
+**Exam Period Restrictions:**
 Only one active Exam Period is allowed.
 Exam Periods cannot overlap.
 ...
 
-Exam Constraints:
+**Exam Constraints:**
 Exams can only be defined if there is no identical exam already.
 The date of the exam must fall within the specified Exam Period.
 ...
 
-Exam Registration Limitation:
+**Exam Registration Limitation:**
 Exam registration is only possible in the last week before the Exam Period starts.
 
-Security:
+**Security:**
 Roles and authorities are yet to be implemented.
 
-Notes
+**Notes**
 Ensure that the necessary dependencies are resolved and the database is properly configured before running the application.
